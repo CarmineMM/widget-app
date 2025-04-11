@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:widgets_app/presentation/screens/animated/animated_screen.dart';
+import 'package:widgets_app/presentation/screens/app_tutorial/app_tutorial_screen.dart';
 import 'package:widgets_app/presentation/screens/screens.dart';
 
 class MenuItem {
@@ -52,5 +53,11 @@ const appMenuItems = <MenuItem>[
     subTitle: 'Una serie de controles de Flutter',
     route: UIControlsScreen.route,
     icon: Icons.car_rental_outlined,
+  ),
+  MenuItem(
+    title: 'Introducción a la aplicación',
+    subTitle: 'Pequeña introducción a la aplicación',
+    route: AppTutorialScreen.route,
+    icon: Icons.accessible_rounded,
   ),
 ];
