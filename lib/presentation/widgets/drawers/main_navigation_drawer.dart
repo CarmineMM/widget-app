@@ -12,7 +12,7 @@ class MainNavigationDrawer extends StatefulWidget {
 }
 
 class _MainNavigationDrawerState extends State<MainNavigationDrawer> {
-  int navDrawerIndex = 0;
+  int navDrawerIndex = 100;
 
   @override
   Widget build(BuildContext context) {
