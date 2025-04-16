@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:widgets_app/presentation/screens/animated/animated_screen.dart';
-import 'package:widgets_app/presentation/screens/app_tutorial/app_tutorial_screen.dart';
-import 'package:widgets_app/presentation/screens/counter/counter_screen.dart';
+
 import 'package:widgets_app/presentation/screens/screens.dart';
 
 class MenuItem {
