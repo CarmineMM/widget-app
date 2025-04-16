@@ -43,12 +43,24 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
     imagesIds.addAll([1, 2, 3, 4, 5].map((e) => e + lastId));
   }
 
+  void moveScrollToBottom() {
+    if (scrollController.position.pixels + 150 <=
+        scrollController.position.maxScrollExtent) {
+      return;
+    }
+
+    scrollController.animateTo(
+      scrollController.position.pixels + 120,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.fastOutSlowIn,
+    );
+  }
+
   Future loadNextPage() async {
     if (isLoading) return;
-    isLoading = true;
-    setState(() {});
+    setState(() => isLoading = true);
 
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 1));
     isLoading = false;
     addFiveImages();
 
@@ -56,6 +68,17 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
     if (!isMounted) return;
 
     setState(() {});
+    moveScrollToBottom();
+  }
+
+  Future<void> onRefresh() async {
+    if (isLoading) return;
+    await Future.delayed(const Duration(seconds: 1));
+    final lastId = imagesIds.last;
+
+    imagesIds.clear();
+    imagesIds.add(lastId + 1);
+    loadNextPage();
   }
 
   @override
@@ -67,20 +90,23 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
         context: context,
         removeTop: true,
         removeBottom: true,
-        child: ListView.builder(
-          controller: scrollController,
-          itemCount: imagesIds.length,
-          itemBuilder: (context, index) {
-            return FadeInImage(
-              fit: BoxFit.cover,
-              width: double.infinity,
-              height: 300,
-              placeholder: AssetImage('assets/images/jar-loading.gif'),
-              image: NetworkImage(
-                'https://picsum.photos/id/${imagesIds[index]}/500/300',
-              ),
-            );
-          },
+        child: RefreshIndicator(
+          onRefresh: onRefresh,
+          child: ListView.builder(
+            controller: scrollController,
+            itemCount: imagesIds.length,
+            itemBuilder: (context, index) {
+              return FadeInImage(
+                fit: BoxFit.cover,
+                width: double.infinity,
+                height: 300,
+                placeholder: AssetImage('assets/images/jar-loading.gif'),
+                image: NetworkImage(
+                  'https://picsum.photos/id/${imagesIds[index]}/500/300',
+                ),
+              );
+            },
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
