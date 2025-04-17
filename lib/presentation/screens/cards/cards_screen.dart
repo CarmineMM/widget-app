@@ -44,11 +44,11 @@ class _CardsView extends StatelessWidget {
             (card) =>
                 _CardType3(elevation: card['elevation'], label: card['label']),
           ),
+
           ...cards.map(
             (card) =>
                 _CardType4(elevation: card['elevation'], label: card['label']),
           ),
-
           SizedBox(height: 50),
         ],
       ),
@@ -173,7 +173,6 @@ class _CardType4 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // final colors = Theme.of(context).colorScheme;
-
     return Card(
       clipBehavior: Clip.hardEdge,
       elevation: elevation,
@@ -183,6 +182,16 @@ class _CardType4 extends StatelessWidget {
             'https://picsum.photos/id/${elevation.toInt()}/600/200',
             height: 180,
             fit: BoxFit.cover,
+            errorBuilder: (
+              BuildContext context,
+              Object error,
+              StackTrace? stackTrace,
+            ) {
+              print(
+                'Error al cargar la imagen para elevation ${elevation.toInt()}: $error',
+              );
+              return const Text('Error al cargar la imagen');
+            },
           ),
           Align(
             alignment: Alignment.topRight,
