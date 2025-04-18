@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 const colorsList = <Color>[
+  Colors.white,
   Colors.pink,
   Colors.deepPurple,
   Colors.indigo,
@@ -17,7 +18,6 @@ const colorsList = <Color>[
   Colors.brown,
   Colors.grey,
   Colors.blueGrey,
-  Colors.white,
   Colors.yellowAccent,
 ];
 
@@ -36,6 +36,17 @@ class AppTheme {
     useMaterial3: true,
     colorSchemeSeed: colorsList[selectedColor],
     brightness: isDarkMode ? Brightness.dark : Brightness.light,
-    appBarTheme: AppBarTheme(centerTitle: true, backgroundColor: appBarColor),
+    appBarTheme: AppBarTheme(
+      centerTitle: true,
+      backgroundColor:
+          colorsList[selectedColor] == Colors.white && isDarkMode
+              ? Colors.black
+              : colorsList[selectedColor],
+    ),
+  );
+
+  AppTheme copyWith({int? selectedColor, bool? isDarkMode}) => AppTheme(
+    selectedColor: selectedColor ?? this.selectedColor,
+    isDarkMode: isDarkMode ?? this.isDarkMode,
   );
 }
