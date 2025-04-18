@@ -10,7 +10,7 @@ final colorListProvider = Provider((ref) => colorsList);
 
 // El state provider, almacena un state de estados para poder ser modificados
 // Almacenara el indice del color seleccionado
-final selectedColorProvider = StateProvider<int>((ref) => 0);
+// final selectedColorProvider = StateProvider<int>((ref) => 0);
 
 // Instancia de tipo AppTheme (Sera un provider personalizado)
 final themeNotifierProvider = StateNotifierProvider<ThemeNotifier, AppTheme>(
