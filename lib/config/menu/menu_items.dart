@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:widgets_app/presentation/screens/screens.dart';
+import 'package:widgets_app/presentation/screens/theme/theme_screen.dart';
 
 class MenuItem {
   final String title;
@@ -70,5 +71,11 @@ const appMenuItems = <MenuItem>[
     subTitle: 'Listas infinitas y pull to refresh',
     route: InfiniteScrollScreen.route,
     icon: Icons.list_alt_rounded,
+  ),
+  MenuItem(
+    title: 'Tema de la app',
+    subTitle: 'Cambiar la configuración de temas de su aplicación',
+    route: ThemeScreen.route,
+    icon: Icons.color_lens_rounded,
   ),
 ];
